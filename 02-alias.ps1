@@ -24,8 +24,8 @@ Invoke-Command {
 		}
 		$aliases.Keys | ForEach-Object {
 			$scriptBlock = @"
-lsAvailable = ((Get-Location).Provider.Name -eq 'FileSystem') -and (Get-Command ls.exe -ErrorAction Ignore)
-if (lsAvailable) {
+`$lsAvailable = ((Get-Location).Provider.Name -eq 'FileSystem') -and (Get-Command ls.exe -ErrorAction Ignore)
+if (`$lsAvailable) {
     Invoke-Expression "$($aliases[$_][0]) `$args"
 }
 else {

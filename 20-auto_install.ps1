@@ -1,7 +1,6 @@
 Invoke-Command {
 	$ProfileDirectory = $PROFILE.Substring(0, $PROFILE.LastIndexOf('\'))
 	$ModuleCheckList = @(
-		'TabExpansionPlusPlus',
 		'PSFzf',
 		'WSLTabCompletion',
 		'posh-git',
