@@ -12,12 +12,7 @@ Invoke-Command {
 		$hasStarship = $null -ne $(Get-Command starship -ErrorAction Ignore)
 
 		if ($hasStarship) {
-			$initScript = $(starship init powershell --print-full-init | Out-String)
-			$patchedScript = $initScript | ForEach-Object {
-				$_.Replace('$cwd.ProviderPath', '$(if ($cwd.ProviderPath -eq "") {$cwd.Path} else {$cwd.ProviderPath})')
-			}
-			Invoke-Expression $patchedScript
-			# Set-Item Function:\prompt -Force -Options ReadOnly
+			Invoke-Expression $(starship init powershell --print-full-init | Out-String)
 		}
 		else {
 			Write-Warning 'Starship is NOT installed. Run: scoop install starship'
