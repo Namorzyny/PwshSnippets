@@ -4,8 +4,7 @@ Invoke-Command {
 	$Env:TERM = 'xterm-256color'
 	$ScoopGitPrefix = $((scoop prefix git) 6> $null)
 	if ($ScoopGitPrefix) {
-		$Env:PATH = $Env:PATH.Replace("$HOME\scoop\shims;", '')
-		$Env:PATH = "$HOME\scoop\shims;$ScoopGitPrefix\usr\bin;$ScoopGitPrefix\mingw64\bin;$Env:PATH"
+		$Env:PATH = "$ScoopGitPrefix\usr\bin;$ScoopGitPrefix\mingw64\bin;$Env:PATH"
 	}
 	else {
 		Write-Warning 'Git for Windows is NOT installed.'

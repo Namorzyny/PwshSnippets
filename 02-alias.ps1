@@ -53,7 +53,7 @@ function ffmerge ($from, $to) {
 }
 
 function clrhist {
-	Remove-Item -Force -Path "$Env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt"
+	New-Item -Path (Get-PSReadLineOption).HistorySavePath -ItemType File -Force | Out-Null
 }
 
 function cleanrepo {
@@ -78,7 +78,7 @@ function update-yadm {
 }
 
 function nvm {
-	if ($args[0] -eq 'use') {
+	if ($args[0] -eq 'install') {
 		if ($null -eq $args[1]) {
 			$nvmrc = Get-Content -Path '.nvmrc' -ErrorAction Ignore | Select-Object -First 1
 			if ($null -eq $nvmrc) {

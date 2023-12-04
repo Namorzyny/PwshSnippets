@@ -21,7 +21,8 @@ Invoke-Command {
 			param($key, $arg)
 			if ((Get-Location).Provider.Name -eq 'FileSystem') {
 				es -get-everything-version
-				if ($LASTEXITCODE -eq 0 -and (Get-Volume -DriveLetter (Get-Location).Drive.Name).FileSystemType -eq 'NTFS') {
+				$isSupportedFileSystem = @('NTFS', 'ReFS') -contains (Get-Volume -DriveLetter (Get-Location).Drive.Name -ErrorAction SilentlyContinue).FileSystemType
+				if (($LASTEXITCODE -eq 0) -and $isSupportedFileSystem) {
 					$prefixLength = (Get-Location).Path.Length
 					if ($prefixLength -gt 3) {
 						$prefixLength++
