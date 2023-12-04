@@ -53,7 +53,7 @@ function ffmerge ($from, $to) {
 }
 
 function clrhist {
-	New-Item -Path (Get-PSReadLineOption).HistorySavePath -ItemType File -Force | Out-Null
+	New-Item -Path "$Env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt" -ItemType File -Force | Out-Null
 }
 
 function cleanrepo {
